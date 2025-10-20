@@ -95,11 +95,11 @@ This document outlines the plan for building the complete React frontend for "Co
 
 ## Progress Update
 
-*   **Authentication:** A complete authentication system with login and signup has been implemented using Supabase.
-*   **Layout:** A consistent and modern application layout has been established, featuring a main content area and a sidebar for navigation.
+*   **Authentication:** A complete authentication system with login and signup has been implemented using Supabase. The UI of the login and signup pages has been updated with a more modern design.
+*   **Layout:** A consistent and modern application layout has been established, featuring a main content area and a sidebar for navigation. A new `MainLayout` component has been created to enforce this structure.
 *   **Routing:** Protected routes have been implemented to ensure that only authenticated users can access the main application.
 *   **Pages:** The foundational pages for the student-facing dashboard and the instructor-facing area have been created.
-*   **Styling:** The application has been styled with Tailwind CSS for a clean and modern look and feel.
+*   **Styling:** The application has been styled with Tailwind CSS for a clean and modern look and feel. The `tailwind.config.js` file has been updated to include the Shadcn/UI theme.
 *   **Code Structure:** The project has been organized into a clear and maintainable structure.
-*   **Student Dashboard:** The student dashboard now displays a list of courses using mock data. This includes a `CourseCard` component and a `courses` data file.
+*   **Student Dashboard:** The student dashboard now displays a list of courses using mock data. This includes a `CourseCard` component and a `courses` data file. The dashboard now uses the new `MainLayout`.
 *   **Instructor Dashboard:** The instructor dashboard has been updated to display a list of courses and a "Create Course" button. This provides a more intuitive and functional interface for instructors to manage their educational content.

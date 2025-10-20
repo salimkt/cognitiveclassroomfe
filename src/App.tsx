@@ -6,18 +6,24 @@ import SignupPage from "./pages/auth/signup";
 import InstructorPage from "./pages/main/instructor";
 import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./lib/guards/ProtectedRoute";
+import MainLayout from "./pages/main/layout";
 
 const router = createBrowserRouter([
   {
-    element: <ProtectedRoute />,
+    element: <ProtectedRoute />, // Protect all routes within this element
     children: [
       {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/instructor",
-        element: <InstructorPage />,
+        element: <MainLayout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+          {
+            path: "/instructor",
+            element: <InstructorPage />,
+          },
+        ],
       },
     ],
   },

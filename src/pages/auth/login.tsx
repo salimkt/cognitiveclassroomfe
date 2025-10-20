@@ -24,7 +24,10 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">Login</h1>
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Cognitive Classroom</h1>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Welcome back! Please sign in to your account.</p>
+        </div>
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="email">
