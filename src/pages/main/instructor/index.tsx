@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function InstructorPage() {
   const [courseTitle, setCourseTitle] = useState('');
 
-  const handleCreateCourse = (e) => {
+  const handleCreateCourse = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Logic to create a new course will be added here
     console.log('Creating course:', courseTitle);
