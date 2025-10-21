@@ -10,29 +10,29 @@ export default function InstructorPage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Instructor Dashboard</h1>
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Create a New Course</h2>
-        <form onSubmit={handleCreateCourse}>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              placeholder="Course Title"
-              value={courseTitle}
-              onChange={(e) => setCourseTitle(e.target.value)}
-              className="border rounded px-4 py-2 flex-1"
-            />
-            <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded-md">
-              Create Course
-            </button>
-          </div>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-semibold text-foreground mb-2">Instructor Dashboard</h1>
+        <p className="text-muted-foreground">Create and manage your courses</p>
+      </div>
+      <div className="bg-card rounded-lg border border-border p-8">
+        <h2 className="text-xl font-semibold text-foreground mb-4">Quick Actions</h2>
+        <form onSubmit={handleCreateCourse} className="flex gap-4">
+          <input
+            type="text"
+            placeholder="Enter course title..."
+            value={courseTitle}
+            onChange={(e) => setCourseTitle(e.target.value)}
+            className="flex-1 bg-input border border-border rounded-lg px-4 py-2 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+          />
+          <button type="submit" className="bg-primary hover:bg-primary text-primary-foreground font-medium px-6 py-2 rounded-lg transition-colors hover:opacity-90">
+            Create
+          </button>
         </form>
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-2">My Courses</h2>
-        {/* List of courses will be displayed here */}
-        <p>You have not created any courses yet.</p>
+        <h2 className="text-2xl font-semibold text-foreground mb-4">My Courses</h2>
+        <p className="text-muted-foreground">You have not created any courses yet.</p>
       </div>
     </div>
   );
