@@ -32,17 +32,29 @@ export default function InstructorPage() {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Your Courses</h1>
-        <Link to="/instructor/create-course" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <div className="space-y-8">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-semibold text-foreground mb-2">Your Courses</h1>
+          <p className="text-muted-foreground">Manage your created courses</p>
+        </div>
+        <Link to="/instructor/create-course" className="bg-primary hover:bg-primary text-primary-foreground font-medium py-2 px-6 rounded-lg transition-colors hover:opacity-90">
           Create Course
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {courses.map(course => (
-          <CourseCard key={course.id} course={course} onDelete={handleDelete} />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.length > 0 ? (
+          courses.map(course => (
+            <CourseCard key={course.id} course={course} onDelete={handleDelete} />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-muted-foreground mb-4">You haven't created any courses yet.</p>
+            <Link to="/instructor/create-course" className="inline-block bg-primary hover:bg-primary text-primary-foreground font-medium py-2 px-6 rounded-lg transition-colors hover:opacity-90">
+              Create Your First Course
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
