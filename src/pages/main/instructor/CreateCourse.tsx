@@ -29,21 +29,54 @@ export default function CreateCoursePage() {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-4">Create Course</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="title" className="block text-gray-700 font-bold mb-2">Title</label>
-          <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-gray-700 font-bold mb-2">Description</label>
-          <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-        </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Create Course
-        </button>
-      </form>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-semibold text-foreground mb-2">Create Course</h1>
+        <p className="text-muted-foreground">Add a new course to share with students</p>
+      </div>
+      <div className="bg-card rounded-lg border border-border p-8 max-w-2xl">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="title" className="block text-sm font-medium text-foreground mb-2">Course Title</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="w-full bg-input border border-border rounded-lg py-2 px-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+              placeholder="Enter course title"
+            />
+          </div>
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-foreground mb-2">Description</label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              rows={6}
+              className="w-full bg-input border border-border rounded-lg py-2 px-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors resize-none"
+              placeholder="Enter course description"
+            ></textarea>
+          </div>
+          <div className="flex gap-3 pt-4">
+            <button
+              type="submit"
+              className="bg-primary hover:bg-primary text-primary-foreground font-medium py-2 px-6 rounded-lg transition-colors hover:opacity-90"
+            >
+              Create Course
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/instructor')}
+              className="bg-muted hover:bg-muted text-muted-foreground font-medium py-2 px-6 rounded-lg transition-colors hover:opacity-90"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
