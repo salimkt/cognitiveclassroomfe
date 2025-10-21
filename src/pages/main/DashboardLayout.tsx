@@ -1,8 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase/client";
-import { useNavigate } from "react-router-dom";
 
-export default function MainLayout() {
+export default function DashboardLayout() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -26,10 +25,19 @@ export default function MainLayout() {
           <nav>
             <ul>
               <li className="mb-2">
-                <Link to="/" className="text-gray-700 hover:text-gray-900 font-bold">Dashboard</Link>
+                <Link to="/" className="text-gray-700 hover:text-gray-900 font-bold">Home</Link>
               </li>
-              <li>
+              <li className="mb-2">
+                <Link to="/my-courses" className="text-gray-700 hover:text-gray-900 font-bold">My Courses</Link>
+              </li>
+              <li className="mb-2">
                 <Link to="/instructor" className="text-gray-700 hover:text-gray-900 font-bold">Instructor</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/profile" className="text-gray-700 hover:text-gray-900 font-bold">Profile</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/dashboard" className="text-gray-700 hover:text-gray-900 font-bold">Dashboard</Link>
               </li>
             </ul>
           </nav>

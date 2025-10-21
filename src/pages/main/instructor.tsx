@@ -1,53 +1,48 @@
-import { useNavigate, Link } from "react-router-dom";
-import { supabase } from "../../lib/supabase/client";
+import { Link } from "react-router-dom";
 import CourseCard from "../../components/CourseCard";
-import { courses } from "../../data/courses";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthProvider";
+import { authenticatedFetch } from "../../lib/api";
 
 export default function InstructorPage() {
-  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [courses, setCourses] = useState<any[]>([]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/auth/login");
+  useEffect(() => {
+    const fetchCourses = async () => {
+      if (!user) return;
+      try {
+        const data = await authenticatedFetch(`/courses/?instructor_id=${user.id}`);
+        setCourses(data);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchCourses();
+  }, [user]);
+
+  const handleDelete = async (id: string) => {
+    try {
+      await authenticatedFetch(`/courses/${id}`, { method: 'DELETE' });
+      setCourses(courses.filter(course => course.id !== id));
+    } catch (error) {
+      console.error('Error deleting course:', error);
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl">Cognitive Classroom</h1>
-        <button 
-          onClick={handleLogout} 
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Logout
-        </button>
-      </header>
-      <div className="flex flex-1">
-        <aside className="w-64 bg-gray-200 p-4">
-          <nav>
-            <ul>
-              <li className="mb-2">
-                <Link to="/" className="text-gray-700 hover:text-gray-900 font-bold">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/instructor" className="text-gray-700 hover:text-gray-900 font-bold">Instructor</Link>
-              </li>
-            </ul>
-          </nav>
-        </aside>
-        <main className="flex-1 p-4">
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="text-3xl font-bold">Your Courses</h1>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Create Course
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {courses.map(course => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
-        </main>
+    <div>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Your Courses</h1>
+        <Link to="/instructor/create-course" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Create Course
+        </Link>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {courses.map(course => (
+          <CourseCard key={course.id} course={course} onDelete={handleDelete} />
+        ))}
       </div>
     </div>
   );

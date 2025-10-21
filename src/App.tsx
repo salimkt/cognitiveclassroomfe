@@ -6,14 +6,19 @@ import SignupPage from "./pages/auth/signup";
 import InstructorPage from "./pages/main/instructor";
 import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./lib/guards/ProtectedRoute";
-import MainLayout from "./pages/main/layout";
+import DashboardLayout from "./pages/main/DashboardLayout";
+import ProfilePage from "./pages/main/Profile";
+import MyCoursesPage from "./pages/main/MyCourses";
+import EditCoursePage from "./pages/main/instructor/EditCourse";
+import CreateCoursePage from "./pages/main/instructor/CreateCourse";
+import Dashboard from "./pages/main/dashboard";
 
 const router = createBrowserRouter([
   {
     element: <ProtectedRoute />, // Protect all routes within this element
     children: [
       {
-        element: <MainLayout />,
+        element: <DashboardLayout />,
         children: [
           {
             path: "/",
@@ -22,6 +27,26 @@ const router = createBrowserRouter([
           {
             path: "/instructor",
             element: <InstructorPage />,
+          },
+          {
+            path: "/instructor/create-course",
+            element: <CreateCoursePage />,
+          },
+          {
+            path: "/instructor/edit-course/:id",
+            element: <EditCoursePage />,
+          },
+          {
+            path: "/my-courses",
+            element: <MyCoursesPage />,
+          },
+          {
+            path: "/profile",
+            element: <ProfilePage />,
+          },
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
           },
         ],
       },
