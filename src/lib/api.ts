@@ -20,12 +20,20 @@ export const authenticatedFetch = async (url: string, options: RequestInit = {})
     headers,
   });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    const errorMessage = `API error: ${response.status} ${response.statusText} - ${errorBody}`;
-    console.error(errorMessage);
+  let data;
+  try {
+    data = await response.json();
+  } catch (e) {
+    const errorMessage = `API error: ${response.status} ${response.statusText}`;
+    console.error(errorMessage, e);
     throw new Error(errorMessage);
   }
 
-  return response.json();
+  if (!response.ok) {
+    const errorMessage = `API error: ${response.status} ${response.statusText}`;
+    console.error(errorMessage, data);
+    throw new Error(errorMessage);
+  }
+
+  return data;
 };
