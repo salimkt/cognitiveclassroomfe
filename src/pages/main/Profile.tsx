@@ -47,25 +47,54 @@ export default function ProfilePage() {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
-      <form onSubmit={handleUpdateProfile}>
-        <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Username</label>
-          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="fullName" className="block text-gray-700 font-bold mb-2">Full Name</label>
-          <input type="text" id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="website" className="block text-gray-700 font-bold mb-2">Website</label>
-          <input type="text" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Update Profile
-        </button>
-      </form>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-semibold text-foreground mb-2">Your Profile</h1>
+        <p className="text-muted-foreground">Manage your account information</p>
+      </div>
+      <div className="bg-card rounded-lg border border-border p-8 max-w-2xl">
+        <form onSubmit={handleUpdateProfile} className="space-y-6">
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full bg-input border border-border rounded-lg py-2 px-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+              placeholder="Enter your username"
+            />
+          </div>
+          <div>
+            <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full bg-input border border-border rounded-lg py-2 px-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div>
+            <label htmlFor="website" className="block text-sm font-medium text-foreground mb-2">Website</label>
+            <input
+              type="text"
+              id="website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className="w-full bg-input border border-border rounded-lg py-2 px-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+              placeholder="Enter your website URL"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-primary hover:bg-primary text-primary-foreground font-medium py-2 px-6 rounded-lg transition-colors hover:opacity-90"
+          >
+            Update Profile
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
