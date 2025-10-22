@@ -103,3 +103,7 @@ This document outlines the plan for building the complete React frontend for "Co
 *   **Code Structure:** The project has been organized into a clear and maintainable structure.
 *   **Student Dashboard:** The student dashboard now displays a list of courses using mock data. This includes a `CourseCard` component and a `courses` data file. The dashboard now uses the new `MainLayout`.
 *   **Instructor Dashboard:** The instructor dashboard has been updated to display a list of courses and a "Create Course" button. This provides a more intuitive and functional interface for instructors to manage their educational content.
+
+## API Improvement Suggestions
+
+*   **Endpoint for Enrolled Courses:** To avoid the N+1 query problem when fetching a user's enrolled courses, it is recommended to create a new backend endpoint: `GET /users/{user_id}/enrolled-courses`. This endpoint should return a list of course objects with full details that the user is enrolled in. This will improve performance and reduce the number of requests from the frontend.

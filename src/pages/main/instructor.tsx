@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import CourseCard from "../../components/CourseCard";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 import { authenticatedFetch } from "../../lib/api";
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  instructor: string;
+}
 
 export default function InstructorPage() {
   const { user } = useAuth();
-  const [courses, setCourses] = useState<any[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -41,7 +48,7 @@ export default function InstructorPage() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {courses.map(course => (
-          <CourseCard key={course.id} course={course} onDelete={handleDelete} />
+          <CourseCard key={course.id} course={course} onDelete={handleDelete} showActions={true} />
         ))}
       </div>
     </div>

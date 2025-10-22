@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 import { authenticatedFetch } from "../../lib/api";
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  instructor: string;
+}
 
 export default function HomePage() {
   const { user } = useAuth();
-  const [courses, setCourses] = useState<any[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {

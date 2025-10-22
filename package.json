@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "logout":"rm -rf ~/.gemini"
+    "gemini": "rm -rf ~/.gemini"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.75.1",

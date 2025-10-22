@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthProvider';
+import { useAuth } from '../../hooks/useAuth';
 import { authenticatedFetch } from '../../lib/api';
 
 export default function ProfilePage() {
