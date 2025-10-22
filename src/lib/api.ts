@@ -9,17 +9,31 @@ export const authenticatedFetch = async (url: string, options: RequestInit = {})
   const headers = {
     ...options.headers,
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`,
+    ...(token && { 'Authorization': `Bearer ${token}` }),
   };
 
-  const response = await fetch(`${API_ROOT}${url}`, {
+  const fullUrl = `${API_ROOT}${url}`;
+  console.log(`Fetching: ${fullUrl}`, { headers, token: token ? 'present' : 'missing' });
+
+  const response = await fetch(fullUrl, {
     ...options,
     headers,
   });
 
-  if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`);
+  let data;
+  try {
+    data = await response.json();
+  } catch (e) {
+    const errorMessage = `API error: ${response.status} ${response.statusText}`;
+    console.error(errorMessage, e);
+    throw new Error(errorMessage);
   }
 
-  return response.json();
+  if (!response.ok) {
+    const errorMessage = `API error: ${response.status} ${response.statusText}`;
+    console.error(errorMessage, data);
+    throw new Error(errorMessage);
+  }
+
+  return data;
 };
