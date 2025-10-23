@@ -13,59 +13,64 @@ import EditCoursePage from "./pages/main/instructor/EditCourse";
 import CreateCoursePage from "./pages/main/instructor/CreateCourse";
 import Dashboard from "./pages/main/dashboard";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <ProtectedRoute />, // Protect all routes within this element
+      children: [
+        {
+          element: <DashboardLayout />,
+          children: [
+            {
+              path: "/",
+              element: <HomePage />,
+            },
+            {
+              path: "/instructor",
+              element: <InstructorPage />,
+            },
+            {
+              path: "/instructor/create-course",
+              element: <CreateCoursePage />,
+            },
+            {
+              path: "/instructor/edit-course/:id",
+              element: <EditCoursePage />,
+            },
+            {
+              path: "/my-courses",
+              element: <MyCoursesPage />,
+            },
+            {
+              path: "/profile",
+              element: <ProfilePage />,
+            },
+            {
+              path: "/dashboard",
+              element: <Dashboard />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      element: <AuthLayout />,
+      children: [
+        {
+          path: "/auth/login",
+          element: <LoginPage />,
+        },
+        {
+          path: "/auth/signup",
+          element: <SignupPage />,
+        },
+      ],
+    },
+  ],
   {
-    element: <ProtectedRoute />, // Protect all routes within this element
-    children: [
-      {
-        element: <DashboardLayout />,
-        children: [
-          {
-            path: "/",
-            element: <HomePage />,
-          },
-          {
-            path: "/instructor",
-            element: <InstructorPage />,
-          },
-          {
-            path: "/instructor/create-course",
-            element: <CreateCoursePage />,
-          },
-          {
-            path: "/instructor/edit-course/:id",
-            element: <EditCoursePage />,
-          },
-          {
-            path: "/my-courses",
-            element: <MyCoursesPage />,
-          },
-          {
-            path: "/profile",
-            element: <ProfilePage />,
-          },
-          {
-            path: "/dashboard",
-            element: <Dashboard />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "/auth/login",
-        element: <LoginPage />,
-      },
-      {
-        path: "/auth/signup",
-        element: <SignupPage />,
-      },
-    ],
-  },
-]);
+    basename: "/cognitiveclassroomfe/",
+  }
+);
 
 function App() {
   return (
